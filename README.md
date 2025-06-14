@@ -29,36 +29,42 @@ spring.datasource.password=sua_senha
 
 2. Crie o banco de dados executando o script SQL fornecido
 
-3. Compile o projeto e execute os testes:
+---
 
-mvn clean package
+## Compile o projeto e execute os testes:
 
-4. Inicie a aplicação:
+1. mvn clean package
+
+2. Inicie a aplicação:
 
 java -jar target/equals-estagio-1.0-SNAPSHOT.jar
 ou
 mvn spring-boot:run
 A API estará disponível em: http://localhost:8080/vendas
 
-5. Filtro por datas
+3. Filtro por datas
 A rota /vendas aceita dois parâmetros opcionais (inicio, fim) no formato yyyy-MM-dd:
 Exemplo:
 GET /vendas?inicio=2023-01-01&fim=2023-12-31
 
-6. Frontend (React)
-Instalação e execução
+---
+
+## Frontend (React)
+1. Instalação e execução
 Navegue até a pasta do frontend e instale as dependências:
 
 npm install
 
-7. Instale a biblioteca de gráficos:
+2. Instale a biblioteca de gráficos:
 
 npm install recharts
 
-8. Inicie o servidor de desenvolvimento:
+3. Inicie o servidor de desenvolvimento:
 
 npm start
 O frontend estará disponível em: http://localhost:3000
+
+---
 
 ## Funcionalidades
 Listagem das vendas
