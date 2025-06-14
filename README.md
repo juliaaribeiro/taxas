@@ -45,7 +45,8 @@ mvn spring-boot:run
 
 A API estará disponível em: http://localhost:8080/vendas
 
-3. Filtro por datas
+3. Filtro por datas:
+
 A rota /vendas aceita dois parâmetros opcionais (inicio, fim) no formato yyyy-MM-dd:
 Exemplo:
 GET /vendas?inicio=2023-01-01&fim=2023-12-31
