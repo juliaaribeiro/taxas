@@ -33,7 +33,7 @@ spring.datasource.password=sua_senha
 
 ## Backend em **Spring Boot**
 
-1. Compile o projeto e execute os testes:
+1. Compile o projeto e execute os testes dentro da pasta backend:
 
 mvn clean package
 
@@ -66,6 +66,7 @@ npm install recharts
 3. Inicie o servidor de desenvolvimento:
 
 npm start
+
 O frontend estará disponível em: http://localhost:3000
 
 ---

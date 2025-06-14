@@ -1,0 +1,70 @@
+# ========================
+# Ignorar arquivos comuns
+# ========================
+
+# Diretório de dependências Node
+node_modules/
+
+# Diretórios de build do React
+/build
+/dist
+
+# Build do Spring Boot
+/target/
+
+# Arquivos de log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.log
+
+# Ambiente (variáveis secretas)
+.env
+.env.local
+.env.*.local
+
+# Arquivos de sistema
+.DS_Store
+Thumbs.db
+
+# IDEs e editores
+.vscode/
+.idea/
+*.iml
+
+# Sistema operacional
+*.swp
+*.swo
+
+# Git
+*.orig
+
+# Pasta coverage (caso use testes)
+coverage/
+
+# Arquivos temporários
+*.tmp
+*.temp
+
+# Test output
+/jest-test-results.json
+
+# Arquivos do IntelliJ / Eclipse / NetBeans
+*.class
+*.jar
+*.war
+*.ear
+*.db
+
+# Arquivos gerados por Maven
+.mvn/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+
+# Spring Boot específico
+application-local.properties
+application-prod.properties
