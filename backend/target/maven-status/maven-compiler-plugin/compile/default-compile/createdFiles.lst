@@ -1,0 +1,10 @@
+com\equals\estagio\service\LeitorArquivo$ResultadoLeitura.class
+com\equals\estagio\model\ResumoVendaDTO.class
+com\equals\estagio\repository\VendaRepository.class
+com\equals\estagio\controller\CabecalhoController.class
+com\equals\estagio\service\LeitorArquivo.class
+com\equals\estagio\EqualsEstagioApplication.class
+com\equals\estagio\repository\CabecalhoRepository.class
+com\equals\estagio\controller\VendaController.class
+com\equals\estagio\model\Venda.class
+com\equals\estagio\model\Cabecalho.class
