@@ -40,6 +40,7 @@ spring.datasource.password=sua_senha
 java -jar target/equals-estagio-1.0-SNAPSHOT.jar
 ou
 mvn spring-boot:run
+
 A API estará disponível em: http://localhost:8080/vendas
 
 3. Filtro por datas
