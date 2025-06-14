@@ -20,7 +20,7 @@ function App() {
   const [cabecalhos, setCabecalhos] = useState([]);
   const [dataInicio, setDataInicio] = useState("");
   const [dataFim, setDataFim] = useState("");
-  const [codigoEmpresa] = useState("1234567891");
+  const [codigoEmpresa] = useState("FICTI");
 
   // Função para buscar os dados do backend com filtro de datas
   const fetchVendas = async () => {

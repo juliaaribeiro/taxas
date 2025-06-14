@@ -1,9 +1,5 @@
 package com.equals.estagio.service;
 
-import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.math.BigDecimal;
@@ -11,6 +7,11 @@ import java.nio.file.Path;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
 
 import com.equals.estagio.model.Cabecalho;
 import com.equals.estagio.model.Venda;
@@ -31,18 +32,18 @@ public class LeitorArquivoTest {
 
         LeitorArquivo leitor = new LeitorArquivo();
 
-        // Act
+        
         ResultadoLeitura resultado = leitor.lerArquivo(tempFile.getAbsolutePath());
 
-        // Extract Cabecalho and Venda from the result
+        
         Cabecalho cabecalho = resultado.getCabecalho();
         List<Venda> vendas = resultado.getVendas();
 
         // Assert
-        assertNotNull(cabecalho); // Ensure header is not null
-        assertNotNull(vendas); // Ensure sales list is not null
+        assertNotNull(cabecalho);
+        assertNotNull(vendas);
  
-        // Assertions for Cabecalho
+        // Assertions para Cabecalho
         assertEquals("0", cabecalho.getTipoRegistro());
         assertEquals("1234567891", cabecalho.getEstabelecimento());
         assertEquals(LocalDate.of(2018, 11, 29), cabecalho.getDataGeracaoArquivo());
@@ -51,12 +52,11 @@ public class LeitorArquivoTest {
         assertEquals("0017799", cabecalho.getNumeroSequencial());
         assertEquals("FICTI", cabecalho.getEmpresaAdquirente());
         assertEquals("01", cabecalho.getTipoExtrato());
-        assertEquals("A", cabecalho.getFiller().trim()); // Trim whitespace for exact match
+        assertEquals("A", cabecalho.getFiller().trim());
         assertEquals("002", cabecalho.getVersaoLayout());
         assertEquals(".002c", cabecalho.getVersaoRelease());
-        assertEquals("", cabecalho.getReservadoFuturo().trim()); // The 'Reservado para uso futuro' field is empty in the example line after the release version
-
-        // Assertions for Venda
+        assertEquals("", cabecalho.getReservadoFuturo().trim());
+        // Assertions para Venda
         assertEquals(1, vendas.size());
         Venda vendaTeste = vendas.get(0);
 
@@ -68,17 +68,15 @@ public class LeitorArquivoTest {
         assertEquals("01", vendaTeste.getTipoTransacao());
         assertEquals("68318154", vendaTeste.getNumeroSerieLeitor());
         assertEquals("12345678910111213141516171819202", vendaTeste.getCodigoTransacao());
-        // For '00000000001000000000', ensure the parsing correctly removes leading zeros or formats as expected
-        assertEquals("000001", vendaTeste.getCodigoPedido().trim()); // Adjusted based on common parsing for such fields
-        assertEquals(new BigDecimal("1.00"), vendaTeste.getValorTotal()); // "0000000000100" -> 1.00
-        assertEquals(new BigDecimal("0.98"), vendaTeste.getValorLiquido()); // "000000000000098" -> 0.98
+        assertEquals("000001", vendaTeste.getCodigoPedido().trim());
+        assertEquals(new BigDecimal("1.00"), vendaTeste.getValorTotal());
+        assertEquals(new BigDecimal("0.98"), vendaTeste.getValorLiquido());
         assertEquals("M", vendaTeste.getPagamento());
         assertEquals("1 ", vendaTeste.getPlano());
-        assertEquals("1", vendaTeste.getParcela().trim()); // Trim whitespace for exact match
-        assertEquals("01", vendaTeste.getQtdParcelas().trim()); // Trim whitespace
-        // For '20181025', ensure the parsing gets it correctly
-        assertEquals(LocalDate.of(2018, 10, 25), vendaTeste.getDataPrevistaPagamento());        
-        assertEquals(new BigDecimal("0.00"), vendaTeste.getTaxaParcelamentoComprador()); // Based on your string "0000000000000000000000000000000000000" -> 0.00
+        assertEquals("1", vendaTeste.getParcela().trim());
+        assertEquals("01", vendaTeste.getQtdParcelas().trim());
+        assertEquals(LocalDate.of(2018, 10, 25), vendaTeste.getDataPrevistaPagamento());
+        assertEquals(new BigDecimal("0.00"), vendaTeste.getTaxaParcelamentoComprador());
         assertEquals(new BigDecimal("0.00"), vendaTeste.getTarifaBoletoComprador());
         assertEquals(new BigDecimal("1.00"), vendaTeste.getValorOriginal());
         assertEquals(new BigDecimal("0.00"), vendaTeste.getTaxaParcelamentoVendedor());
@@ -86,7 +84,7 @@ public class LeitorArquivoTest {
         assertEquals(new BigDecimal("0.00"), vendaTeste.getTarifaIntermediacao());
         assertEquals(new BigDecimal("0.00"), vendaTeste.getTarifaBoletoVendedor());
         assertEquals(new BigDecimal("0.00"), vendaTeste.getRepasseAplicacao());
-        assertEquals(new BigDecimal("0.98"), vendaTeste.getValorLiquidoTransacao()); // "000000000000098" -> 0.98
+        assertEquals(new BigDecimal("0.98"), vendaTeste.getValorLiquidoTransacao());
         assertEquals("01", vendaTeste.getStatusPagamento());
         assertEquals("03", vendaTeste.getMeioPagamento());
         assertEquals("MASTERCARD", vendaTeste.getBandeira().trim());
@@ -100,6 +98,6 @@ public class LeitorArquivoTest {
         assertEquals("7890", vendaTeste.getCartaoHolder());
         assertEquals("589082", vendaTeste.getCodigoAutorizacao());
         assertEquals("115720", vendaTeste.getCodigoCv().trim());
-        assertEquals("", vendaTeste.getReservadoFuturos().trim()); // Corrected and trimmed
+        assertEquals("", vendaTeste.getReservadoFuturos().trim());
     }
 }

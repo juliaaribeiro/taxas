@@ -36,27 +36,27 @@ public class VendaController {
         return repository.findAll();
     }
 
-@GetMapping("/resumo")
-public ResumoVendaDTO resumoVendas(
-    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
-    @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
+    @GetMapping("/resumo")
+    public ResumoVendaDTO resumoVendas(
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate inicio,
+        @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fim) {
 
-    List<Venda> vendas = repository.findByDataTransacaoBetween(inicio, fim);
+        List<Venda> vendas = repository.findByDataTransacaoBetween(inicio, fim);
 
-    long totalVendas = vendas.size();
-    BigDecimal totalValor = vendas.stream().map(Venda::getValorTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
-    BigDecimal totalLiquido = vendas.stream().map(Venda::getValorLiquido).reduce(BigDecimal.ZERO, BigDecimal::add);
-    BigDecimal totalTaxas = totalValor.subtract(totalLiquido);
+        long totalVendas = vendas.size();
+        BigDecimal totalValor = vendas.stream().map(Venda::getValorTotal).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalLiquido = vendas.stream().map(Venda::getValorLiquido).reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal totalTaxas = totalValor.subtract(totalLiquido);
 
-    Map<String, Long> vendasPorBandeira = vendas.stream()
-        .collect(Collectors.groupingBy(Venda::getBandeira, Collectors.counting()));
+        Map<String, Long> vendasPorBandeira = vendas.stream()
+            .collect(Collectors.groupingBy(Venda::getBandeira, Collectors.counting()));
 
-    Map<String, BigDecimal> valorPorBandeira = vendas.stream()
-        .collect(Collectors.groupingBy(Venda::getBandeira,
-            Collectors.reducing(BigDecimal.ZERO, Venda::getValorTotal, BigDecimal::add)));
+        Map<String, BigDecimal> valorPorBandeira = vendas.stream()
+            .collect(Collectors.groupingBy(Venda::getBandeira,
+                Collectors.reducing(BigDecimal.ZERO, Venda::getValorTotal, BigDecimal::add)));
 
-    return new ResumoVendaDTO(totalVendas, totalValor, totalLiquido, totalTaxas, vendasPorBandeira, valorPorBandeira);
-}
+        return new ResumoVendaDTO(totalVendas, totalValor, totalLiquido, totalTaxas, vendasPorBandeira, valorPorBandeira);
+    }
 
 
 
