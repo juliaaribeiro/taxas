@@ -31,9 +31,11 @@ spring.datasource.password=sua_senha
 
 ---
 
-## Compile o projeto e execute os testes:
+## Backend em **Spring Boot**
 
-1. mvn clean package
+1. Compile o projeto e execute os testes:
+
+mvn clean package
 
 2. Inicie a aplicação:
 
